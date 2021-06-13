@@ -1,0 +1,2 @@
+python kor.py
+pause
