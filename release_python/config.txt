@@ -1,0 +1,40 @@
+#This is config file of SeedReroller
+#이 파일은 SeedReroller의 설정 파일입니다
+
+#First value is x pos, Second is y pos
+#첫번째 값은 x좌표, 두번째 값은 y좌표입니다
+
+#Single Player Button Position
+#싱글플레이어 버튼의 좌표
+0
+0
+#Create New World Button Position
+#새 월드 만들기 버튼의 좌표
+0
+0
+#Gamemode Button Position
+#게임모드 설정 버튼의 좌표
+0
+0
+#Difficulty Button Position
+#난이도 설정 버튼의 좌표
+0
+0
+#More World Options Button Position
+#더 많은 세계 설정 버튼의 좌표
+0
+0
+#Seed Setting Input Position
+#시드 설정 입력란의 좌표
+0
+0
+#Create New World(Start running) Button Position
+#새 월드 만들기(스피드런 시작) 버튼의 좌표
+0
+0
+#Background Color(Use RGB + Alpha)
+#배경 색갈(RGB + 투명도 사용)
+15
+15
+15
+240
