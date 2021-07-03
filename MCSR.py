@@ -5,15 +5,15 @@ import linecache as lc
 import pyautogui as pagman
 import pydirectinput as pdi
 import keyboard
-import time
 
-keylist = ['F4', 'NumberKey 1', 'F']
+#pyinstaller MCSR.py -F -w -i icon.ico
+
 gamemodelist = ['Survival', 'Hardcore', 'Creative']
 difficultylist = ['Easy', 'Normal', 'Hard', 'Peaceful']
 macrot = ['Mouse Macro', 'Keyboard Macro']
 
-pagman.PAUSE = 0.02
-pdi.PAUSE = 0.02
+pagman.PAUSE = 0.07
+pdi.PAUSE = 0.07
 
 def githubpdie():
     webbrowser.open('https://github.com/GlitchleX/MCSeedReroller')
@@ -101,12 +101,10 @@ def macro():
         pdi.press('enter', _pause = False)
 
 def htoggle():
-    while str(get_value('hotkeytoggle')) == 'True':
-        keyboard.wait(hotkey = 'f4', suppress=False)
-        macro()
+    if str(get_value('hotkeytoggle')) == 'True':
+        keyboard.add_hotkey(hotkey = 'f4', callback = macro)
     if str(get_value('hotkeytoggle')) == 'False':
-        pass
-
+        keyboard.remove_hotkey(macro)
 
 def customseed():
     if str(get_value('seedtype')) == 'Use Custom/Random Seed':
@@ -115,9 +113,22 @@ def customseed():
         configure_item('custom_seed', enabled=False)
 
 def setmacrodelay():
+    if str(get_value('delaylimit')) == 'False':
+        pass
+    if str(get_value('delaylimit')) == 'True':
+        if float(get_value('macrodelay')) < 0.07:
+            set_value(name = 'macrodelay', value = 0.07)
     pagman.PAUSE = float(get_value('macrodelay'))
     pdi.PAUSE = float(get_value('macrodelay'))
-    print(float(get_value('macrodelay')))
+
+def toggledelay():
+    if str(get_value('delaylimit')) == 'True':
+        if float(get_value('macrodelay')) < 0.07:
+            set_value(name = 'macrodelay', value = 0.07)
+    pagman.PAUSE = float(get_value('macrodelay'))
+    pdi.PAUSE = float(get_value('macrodelay'))
+
+
 
 bgred = int(lc.getline('config.txt', 37).strip())
 bggreen = int(lc.getline('config.txt', 38).strip())
@@ -155,11 +166,6 @@ with window('main'):
             add_combo(name = 'seedtype', items = ['Use SSG 1.16.1 Seed', 'Use Copied Text', 'Use Custom/Random Seed'], label = 'Seed Setting', default_value = 'Use SSG 1.16.1 Seed', callback = customseed)
             add_input_text(name = 'custom_seed', label = 'Set Custom Seed', hint = 'Keep it blank to use a random seed', enabled = False)
             add_spacing(count = 1)
-            add_text('Macro hotkey')
-            add_same_line()
-            add_text(name = '(?)', tip = 'Disabled because i don`t want to see more bugs\nAlways Use "F4"')
-            add_radio_button(name = 'keybind', items = keylist, horizontal=True, enabled = False)
-            add_spacing(count = 1)
             add_text('Gamemode Setting')
             add_radio_button(name = 'gamemode', items = gamemodelist, horizontal=True)
             add_spacing(count = 1)
@@ -169,17 +175,21 @@ with window('main'):
         with tab(name = 'macrotab', label = 'Macro Setting'):
             add_spacing(count = 2)
             add_checkbox(name = 'hotkeytoggle', label = 'Enable Hotkey', callback = htoggle)
-            add_text('This option have a bug so if you enable this one time,\nhotkey will work while python cmd process is alive.\nand you can`t disable this if you don`t close this')
+            add_same_line()
+            add_text(name = '(?)', tip = 'Hotkey is F4')
             add_spacing(count = 2)
             add_text('Macro Type')
             add_same_line()
             add_text(name = '(?)', tip = 'I rec')
             add_radio_button(name = 'macrotype', items = macrot, enabled = True, default_value=1)
             add_spacing(count = 2)
-            add_text('PAUSE value')
+            add_text('Delay between inputs')
             add_same_line()
             add_text(name = '(?)', tip = 'Small value will make macro VERY faster, but it can be buggy\nPyAutoGUI/PyDirectInput`s default value is 0.1\nEdit this before enable hotkey or value won`t be change')
-            add_slider_float(name = 'macrodelay', label = '', min_value = 0, max_value = 0.1, default_value = 0.02, width = 200, format = '%.2f', callback = setmacrodelay)
+            add_slider_float(name = 'macrodelay', label = '', min_value = 0, max_value = 0.1, default_value = 0.07, width = 200, format = '%.2f', callback = setmacrodelay)
+            add_checkbox(name = 'delaylimit', label = 'Enable Safe Delay Time', default_value = True, callback = toggledelay)
+            add_same_line()
+            add_text(name = '(?)', tip = 'If you enable this, you can`t set PAUZE value under 0.07\nbecause speedrun.com recommanded a delay of at least 70ms between inputs')
 
 
     set_main_window_size(900,600)
