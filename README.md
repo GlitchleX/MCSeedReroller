@@ -1,8 +1,10 @@
 # MCSeedReroller
 Macro for MC speedrunner
+v1.3 is soon, with multi instance setting maybe (that have gui omg!!!!)
+and some optimization
 
 # Feature (v1.2)
- -exeable file (dont need python but slow when run program)
+ -executeable file (dont need python but slow when run program)
   실행파일 (파이썬이 필요하지 않지만 실행이 느림)
  -Two type of macro (Mouse & Keyboard, Keyboard is better)
   두가지 방식의 매크로 (마우스 & 키보드, 키보드가 더 나음)
