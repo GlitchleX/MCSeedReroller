@@ -1,3 +1,6 @@
+ok this program is dead
+ahk might be better
+
 # MCSP Helper
 Minecraft Speenrun Helper
 help something
