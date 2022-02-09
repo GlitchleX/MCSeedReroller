@@ -1,5 +1,6 @@
 ok this program is dead
 ahk might be better
+edit: this program is trash bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug
 
 # MCSP Helper
 Minecraft Speenrun Helper
